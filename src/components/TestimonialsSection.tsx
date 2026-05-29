@@ -31,10 +31,6 @@ export function TestimonialsSection() {
             <p className="mt-4 text-base leading-relaxed text-slate-600 md:text-lg">
               We are adding reviews from Calgary customers. Check back soon for real quotes and ratings.
             </p>
-            <div
-              className="mx-auto mt-6 h-1 w-20 rounded-full bg-gradient-to-r from-brand-navy via-brand-teal to-brand-green"
-              aria-hidden
-            />
           </div>
         </Reveal>
 

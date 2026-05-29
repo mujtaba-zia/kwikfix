@@ -30,7 +30,6 @@ export function AboutSection() {
               <h2 id="about-heading" className="section-heading mt-3">
                 Kwikfix Services
               </h2>
-              <div className="mt-5 h-1 w-16 rounded-full bg-gradient-to-r from-brand-blue via-brand-teal to-brand-green" aria-hidden />
               <div className="mt-6 space-y-4 text-base leading-relaxed text-slate-700 md:text-[1.0625rem]">
                 <p>
                   We are a Calgary cleaning company focused on dependable service, attention to detail,

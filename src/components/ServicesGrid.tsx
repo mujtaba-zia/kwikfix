@@ -169,10 +169,6 @@ export function ServicesGrid() {
               Residential and commercial cleaning with clear scope and scheduling by phone. Jump to a
               service or scroll to read more.
             </p>
-            <div
-              className="mx-auto mt-6 h-1 w-20 rounded-full bg-gradient-to-r from-brand-navy via-brand-blue to-brand-green"
-              aria-hidden
-            />
           </div>
         </Reveal>
 

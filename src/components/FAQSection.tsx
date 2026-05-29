@@ -75,10 +75,6 @@ export function FAQSection() {
           <p className="mt-4 text-base leading-relaxed text-slate-600 md:text-lg">
             Quick answers about services and booking. Call us if you need more detail.
           </p>
-          <div
-            className="mx-auto mt-6 h-1 w-20 rounded-full bg-gradient-to-r from-brand-blue via-brand-navy to-brand-green"
-            aria-hidden
-          />
         </div>
 
         <div className="mt-10 space-y-2 md:mt-12">

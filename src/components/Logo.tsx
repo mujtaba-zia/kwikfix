@@ -8,7 +8,7 @@ type LogoProps = {
   sizes?: string;
 };
 
-/** Rasterized from Kwikfix Logo No Color Bar.pdf (transparent PNG). */
+/** Brand wordmark (`public/logo.png`, tracked in git). */
 const LOGO_WIDTH = 2550;
 const LOGO_HEIGHT = 831;
 

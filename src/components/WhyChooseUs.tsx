@@ -86,10 +86,6 @@ export function WhyChooseUs() {
               Calgary clients choose us when they want work that feels intentional, not rushed, with
               simple phone-based booking and direct answers from our team.
             </p>
-            <div
-              className="mx-auto mt-6 h-1 w-20 rounded-full bg-gradient-to-r from-brand-navy via-brand-blue to-brand-green"
-              aria-hidden
-            />
           </div>
         </Reveal>
 

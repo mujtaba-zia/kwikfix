@@ -50,7 +50,8 @@ export function HeaderNav() {
   }, [open]);
 
   return (
-    <header
+    <>
+      <header
       className={`sticky top-0 z-50 border-b transition-all duration-200 ${
         scrolled
           ? "border-slate-200/60 bg-[#f7faf9]/95 shadow-sm backdrop-blur-md"
@@ -128,10 +129,11 @@ export function HeaderNav() {
           </button>
         </div>
       </div>
+    </header>
 
-      <div
+    <div
         id="mobile-menu"
-        className={`fixed inset-0 top-[64px] z-40 bg-white transition-[opacity,visibility] duration-200 md:hidden ${
+        className={`fixed inset-0 top-[64px] z-[45] bg-white/90 backdrop-blur-2xl backdrop-saturate-150 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] transition-[opacity,visibility] duration-200 md:hidden ${
           open ? "visible opacity-100" : "invisible opacity-0 pointer-events-none"
         }`}
         aria-hidden={!open}
@@ -144,13 +146,13 @@ export function HeaderNav() {
             <a
               key={link.href}
               href={link.href}
-              className="rounded-xl px-4 py-3.5 text-base font-medium text-slate-800 hover:bg-slate-50"
+              className="rounded-xl px-4 py-3.5 text-base font-medium text-slate-800 hover:bg-slate-100/80"
               onClick={() => setOpen(false)}
             >
               {link.label}
             </a>
           ))}
-          <div className="mt-4 flex flex-col gap-2 border-t border-slate-100 pt-6">
+          <div className="mt-4 flex flex-col gap-2 border-t border-slate-200/80 pt-6">
             <CallButton
               href={PHONES[0].href}
               label={`Call ${PHONES[0].display}`}
@@ -170,6 +172,6 @@ export function HeaderNav() {
           </div>
         </nav>
       </div>
-    </header>
+    </>
   );
 }

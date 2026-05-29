@@ -42,11 +42,7 @@ export function FinalCTA() {
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl bg-gradient-navy px-6 py-10 text-center text-white shadow-premium md:px-10 md:py-12">
             <div className="absolute inset-0 bg-grid-fine-light opacity-[0.07]" aria-hidden />
-            <div
-              className="relative mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-brand-green-bright via-white/70 to-brand-green-bright"
-              aria-hidden
-            />
-            <p className="relative mt-8 text-[0.6875rem] font-semibold uppercase tracking-[0.22em] text-brand-green-bright">
+            <p className="relative mt-0 text-[0.6875rem] font-semibold uppercase tracking-[0.22em] text-brand-green-bright">
               Get started
             </p>
             <h2 id="cta-heading" className="section-heading-light relative mt-3 text-balance">

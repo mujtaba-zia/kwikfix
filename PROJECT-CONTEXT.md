@@ -80,9 +80,8 @@ python -c "import fitz; doc=fitz.open(r'Kwikfix Logo No Color Bar.pdf'); p=doc[0
 5. **Full-page background:** The **`body`** uses **`bg-page`** (`globals.css`): a balanced wash of **blue + green + subtle depth**, not a single white-to-navy vertical scroll gradient.  
 6. **Section backgrounds:** Sections are mostly **transparent** on that canvas, with **`gradient-brand-soft`**, dots/grid, and **soft blurs** (blue / green / navy) so **brand color appears in every block**, not concentrated at the top or bottom.  
 7. **Navy usage:** **Hero** sidebar card footer strip, **About** pull-quote card, **Services** bottom “book by phone” band, **FinalCTA** rounded **`bg-gradient-navy`** card (not a full-bleed dark runway). **SiteFooter** stays dark for closure.  
-8. **Accent bars:** Many sections use a short **`from-brand-navy via-brand-blue to-brand-green`** (or similar) rule under headings so all three families read in one place.  
-9. **Tailwind:** There are **no** `bg-flow-*` section gradients anymore (removed); use **`gradient-navy`**, **`gradient-brand`**, **`gradient-brand-soft`**, **`gradient-surface`** for components only.  
-10. **Icon motion:** Key icons (service cards, hero sidebar checks, why-us tiles, FAQ chevrons, nav menu, call buttons, floating CTA, testimonials stars) use subtle **`motion-safe:`** hover scale/rotate so **`prefers-reduced-motion`** stays respected.
+8. **Tailwind:** There are **no** `bg-flow-*` section gradients anymore (removed); use **`gradient-navy`**, **`gradient-brand`**, **`gradient-brand-soft`**, **`gradient-surface`** for components only.  
+9. **Icon motion:** Key icons (service cards, hero sidebar checks, why-us tiles, FAQ chevrons, nav menu, call buttons, floating CTA, testimonials stars) use subtle **`motion-safe:`** hover scale/rotate so **`prefers-reduced-motion`** stays respected.
 
 **Tone:** Professional cleaning company – trustworthy, not gimmicky; **no** fake reviews, licenses, insured claims, certifications, or street addresses unless the client supplies them.
 

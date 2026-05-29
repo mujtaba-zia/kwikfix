@@ -71,21 +71,12 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     siteName: COMPANY.name,
-    images: [
-      {
-        url: "/footer-logo.png",
-        width: 1536,
-        height: 1024,
-        alt: `${COMPANY.name} logo`,
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Kwikfix Services | Professional Cleaning in Calgary, Alberta",
     description:
       "Dependable residential and commercial cleaning in Calgary. Post-construction, deep, move-in/out, carpet, Airbnb, and office cleaning.",
-    images: ["/footer-logo.png"],
   },
   robots: {
     index: true,
@@ -93,10 +84,6 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "/",
-  },
-  icons: {
-    icon: [{ url: "/logo.png", type: "image/png", sizes: "any" }],
-    apple: "/logo.png",
   },
 };
 

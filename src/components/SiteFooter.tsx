@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { COMPANY, PHONES } from "@/lib/phones";
 
-/** From `Kwikfix Services logo design.png` (served as /footer-logo.png). */
+/** Footer wordmark (`public/footer-logo.png`, tracked in git). */
 const FOOTER_LOGO_WIDTH = 1536;
 const FOOTER_LOGO_HEIGHT = 1024;
 
