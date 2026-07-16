@@ -36,7 +36,7 @@ export function HeaderNav() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 16);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -51,120 +51,129 @@ export function HeaderNav() {
 
   return (
     <>
-      <header
-      className={`sticky top-0 z-50 border-b transition-all duration-200 ${
-        scrolled
-          ? "border-slate-200/60 bg-[#f7faf9]/95 shadow-sm backdrop-blur-md"
-          : "border-slate-200/50 bg-[#f8faf9]/92 backdrop-blur-sm"
-      }`}
-    >
-      <div className="mx-auto grid min-h-[64px] max-w-6xl grid-cols-[minmax(0,auto)_1fr_minmax(0,auto)] items-center gap-2 px-4 py-1.5 md:min-h-[68px] md:gap-3 md:px-6 md:py-2 lg:px-8">
-        <a
-          href="#top"
-          className="flex shrink-0 items-center justify-self-start rounded-lg transition-transform duration-200 motion-safe:hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
+      <header className="sticky top-3 z-50 px-3 md:top-4 md:px-4">
+        <div
+          className={`mx-auto flex max-w-5xl items-center justify-between gap-3 rounded-full border py-2 pl-4 pr-2 backdrop-blur-xl transition-all duration-200 md:py-2.5 md:pl-6 md:pr-2.5 ${
+            scrolled
+              ? "border-slate-200 bg-white/95 shadow-card"
+              : "border-slate-200/70 bg-white/80 shadow-soft"
+          }`}
         >
-          <Logo priority height={46} sizes="(max-width: 768px) 180px, 240px" />
-          <span className="sr-only">{COMPANY.name}</span>
-        </a>
+          <a
+            href="#top"
+            className="flex shrink-0 items-center rounded-full transition-transform duration-200 motion-safe:hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
+          >
+            <Logo priority height={38} sizes="(max-width: 768px) 160px, 200px" />
+            <span className="sr-only">{COMPANY.name}</span>
+          </a>
 
-        <nav className="hidden min-w-0 justify-self-center md:block" aria-label="Primary">
-          <ul className="flex flex-wrap items-center justify-center gap-x-1 gap-y-1 lg:gap-x-0.5">
+          <nav className="hidden md:block" aria-label="Primary">
+            <ul className="flex items-center gap-0.5">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-brand-navy"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="flex items-center gap-1.5">
+            <CallButton
+              href={PHONES[0].href}
+              label="Call Now"
+              variant="primary"
+              size="sm"
+              className="hidden sm:inline-flex"
+              icon={<PhoneIcon className="h-4 w-4 shrink-0" />}
+            />
+            <button
+              type="button"
+              className="group/menu inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 transition-all duration-200 hover:border-brand-blue/40 hover:text-brand-blue md:hidden"
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              aria-label={open ? "Close menu" : "Open menu"}
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? (
+                <svg
+                  className="motion-safe:transition-transform motion-safe:duration-200 motion-safe:group-hover/menu:rotate-90"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  aria-hidden
+                >
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg
+                  className="motion-safe:transition-transform motion-safe:duration-200 motion-safe:group-hover/menu:scale-110"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  aria-hidden
+                >
+                  <path d="M3 12h18M3 6h18M3 18h18" />
+                </svg>
+              )}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div
+        className={`fixed inset-0 z-40 bg-brand-navy/25 backdrop-blur-[2px] transition-opacity duration-200 md:hidden ${
+          open ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        aria-hidden
+        onClick={() => setOpen(false)}
+      />
+      <div
+        id="mobile-menu"
+        className={`fixed inset-x-3 top-[76px] z-[45] origin-top rounded-3xl border border-slate-200 bg-white/95 p-3 shadow-card backdrop-blur-2xl transition-all duration-200 md:hidden ${
+          open ? "visible scale-100 opacity-100" : "invisible scale-[0.98] opacity-0 pointer-events-none"
+        }`}
+        aria-hidden={!open}
+      >
+        <nav aria-label="Mobile primary">
+          <ul className="divide-y divide-slate-100">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="whitespace-nowrap rounded-lg px-2 py-1.5 text-[0.8125rem] font-semibold text-slate-700 transition-colors hover:bg-slate-100 hover:text-brand-blue md:text-sm lg:px-2.5"
+                  className="flex items-center justify-between rounded-xl px-3 py-3.5 font-display text-base font-semibold text-slate-900 transition-colors hover:bg-slate-50 hover:text-brand-blue"
+                  onClick={() => setOpen(false)}
                 >
                   {link.label}
+                  <svg
+                    className="h-4 w-4 text-slate-400"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    aria-hidden
+                  >
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
                 </a>
               </li>
             ))}
           </ul>
-        </nav>
-
-        <div className="flex items-center justify-end gap-1.5 md:gap-2">
-          <CallButton
-            href={PHONES[0].href}
-            label="Call Now"
-            variant="primary"
-            size="sm"
-            className="hidden !px-3 !py-2 !text-sm sm:inline-flex"
-            icon={<PhoneIcon className="h-4 w-4 shrink-0" />}
-          />
-          <button
-            type="button"
-            className="group/menu inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-800 transition-all duration-200 hover:border-brand-blue/30 hover:bg-brand-blue/5 hover:text-brand-blue md:hidden"
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? (
-              <svg
-                className="motion-safe:transition-transform motion-safe:duration-200 motion-safe:group-hover/menu:rotate-90 motion-safe:group-hover/menu:scale-110"
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                aria-hidden
-              >
-                <path d="M18 6L6 18M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg
-                className="motion-safe:transition-transform motion-safe:duration-200 motion-safe:group-hover/menu:scale-110"
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                aria-hidden
-              >
-                <path d="M3 12h18M3 6h18M3 18h18" />
-              </svg>
-            )}
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <div
-        id="mobile-menu"
-        className={`fixed inset-0 top-[64px] z-[45] bg-white/90 backdrop-blur-2xl backdrop-saturate-150 shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] transition-[opacity,visibility] duration-200 md:hidden ${
-          open ? "visible opacity-100" : "invisible opacity-0 pointer-events-none"
-        }`}
-        aria-hidden={!open}
-      >
-        <nav
-          className="flex h-[calc(100dvh-64px)] flex-col gap-0.5 overflow-y-auto px-4 py-6"
-          aria-label="Mobile primary"
-        >
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="rounded-xl px-4 py-3.5 text-base font-medium text-slate-800 hover:bg-slate-100/80"
-              onClick={() => setOpen(false)}
-            >
-              {link.label}
-            </a>
-          ))}
-          <div className="mt-4 flex flex-col gap-2 border-t border-slate-200/80 pt-6">
+          <div className="mt-3 flex flex-col gap-2 border-t border-slate-100 pt-3">
             <CallButton
               href={PHONES[0].href}
               label={`Call ${PHONES[0].display}`}
               variant="primary"
-              size="md"
-              className="w-full"
-              icon={<PhoneIcon />}
-            />
-            <CallButton
-              href={PHONES[1].href}
-              label={`Call ${PHONES[1].display}`}
-              variant="outline"
               size="md"
               className="w-full"
               icon={<PhoneIcon />}

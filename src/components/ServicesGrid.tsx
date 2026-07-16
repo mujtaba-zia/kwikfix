@@ -2,6 +2,7 @@ import { PHONES } from "@/lib/phones";
 import { Section } from "./Section";
 import { CallButton } from "./CallButton";
 import { Reveal } from "./Reveal";
+import { Sparkle } from "./Sparkle";
 
 function serviceAnchorId(title: string) {
   return (
@@ -130,55 +131,45 @@ const services = [
   },
 ];
 
-const pillClass =
-  "inline-flex items-center rounded-full border border-slate-300/60 bg-white/90 px-4 py-2 text-sm font-medium text-slate-800 shadow-sm backdrop-blur-sm transition hover:border-brand-blue/45 hover:bg-white hover:text-brand-blue hover:shadow-md";
+/* Alternating bento spans on lg: (2,1), (1,2), (2,1) */
+const spanForIndex = (i: number) => (i % 4 === 0 || i % 4 === 3 ? "lg:col-span-2" : "lg:col-span-1");
+
+const chipClass =
+  "inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition-colors duration-200 hover:border-brand-blue hover:bg-brand-blue hover:text-white";
 
 export function ServicesGrid() {
   return (
     <Section
       id="services"
-      className="relative overflow-hidden pt-6 pb-16 md:pt-8 md:pb-24"
+      className="bg-white py-16 md:py-24"
       aria-labelledby="services-heading"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-gradient-brand-soft opacity-[0.45]"
-        aria-hidden
-      />
-      <div className="pointer-events-none absolute inset-0 bg-dots opacity-[0.14]" aria-hidden />
-      <div
-        className="pointer-events-none absolute -right-20 top-1/3 h-64 w-64 rounded-full bg-brand-blue/12 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -left-16 bottom-1/4 h-56 w-56 rounded-full bg-brand-green/10 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute left-1/2 top-0 h-40 w-[min(100%,48rem)] -translate-x-1/2 rounded-full bg-brand-navy/10 blur-3xl"
-        aria-hidden
-      />
-
-      <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
         <Reveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="eyebrow text-brand-blue">What we offer</p>
-            <h2 id="services-heading" className="section-heading mt-3">
-              Services built for Calgary properties
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-600 md:text-lg">
-              Residential and commercial cleaning with clear scope and scheduling by phone. Jump to a
-              service or scroll to read more.
+          <div className="grid gap-6 md:grid-cols-[1.2fr_0.8fr] md:items-end">
+            <div>
+              <p className="flex items-center gap-2 eyebrow text-brand-blue">
+                <Sparkle className="h-3 w-3 text-brand-green" />
+                What we offer
+              </p>
+              <h2 id="services-heading" className="section-heading mt-3 max-w-[16ch]">
+                Services built for Calgary properties
+              </h2>
+            </div>
+            <p className="text-base leading-relaxed text-slate-600 md:pb-2 md:text-lg">
+              Residential and commercial cleaning with clear scope and scheduling by phone. Jump to
+              a service or scroll to read more.
             </p>
           </div>
         </Reveal>
 
-        <nav className="mt-10 md:mt-12" aria-label="Jump to a service">
-          <ul className="flex snap-x snap-mandatory gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] md:flex-wrap md:justify-center md:overflow-visible md:snap-none [&::-webkit-scrollbar]:hidden">
+        <nav className="mt-8 md:mt-10" aria-label="Jump to a service">
+          <ul className="flex snap-x snap-mandatory gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] md:flex-wrap md:overflow-visible md:snap-none [&::-webkit-scrollbar]:hidden">
             {services.map((s) => {
               const id = serviceAnchorId(s.title);
               return (
                 <li key={s.title} className="snap-center shrink-0">
-                  <a href={`#${id}`} className={pillClass}>
+                  <a href={`#${id}`} className={chipClass}>
                     {shortTabLabel(s.title)}
                   </a>
                 </li>
@@ -187,50 +178,42 @@ export function ServicesGrid() {
           </ul>
         </nav>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
           {services.map((s, i) => {
             const id = serviceAnchorId(s.title);
             return (
-              <Reveal key={s.title} delayMs={i * 40}>
+              <Reveal key={s.title} delayMs={i * 40} className={`h-full ${spanForIndex(i)}`}>
                 <article
                   id={id}
-                  className="group flex h-full scroll-mt-28 flex-col rounded-2xl border border-slate-200/90 bg-white p-6 shadow-elegant transition duration-300 hover:border-slate-300 hover:shadow-card md:p-7"
+                  className="group relative flex h-full scroll-mt-28 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-brand-blue/35 hover:shadow-card md:p-7"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-blue text-white shadow-sm transition-all duration-300 ease-out motion-safe:group-hover:scale-105 motion-safe:group-hover:-rotate-2 motion-safe:group-hover:shadow-lg motion-safe:group-hover:ring-2 motion-safe:group-hover:ring-brand-green/40 group-hover:bg-brand-blue-dark">
+                  <span
+                    className="pointer-events-none absolute -right-1 top-2 font-display text-6xl font-extrabold leading-none text-slate-100 transition-colors duration-300 group-hover:text-brand-ice md:text-7xl"
+                    aria-hidden
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-brand-blue/10 text-brand-blue transition-colors duration-300 group-hover:bg-brand-blue group-hover:text-white">
                     {s.icon}
                   </div>
-                  <h3 className="mt-5 font-display text-lg font-bold text-slate-900 md:text-xl">{s.title}</h3>
-                  <p className="mt-2 flex-1 text-[0.9375rem] leading-relaxed text-slate-600">{s.description}</p>
+                  <h3 className="relative mt-5 font-display text-lg font-bold text-slate-900 md:text-xl">
+                    {s.title}
+                  </h3>
+                  <p className="relative mt-2 flex-1 text-[0.9375rem] leading-relaxed text-slate-600">
+                    {s.description}
+                  </p>
                   <CallButton
                     href={PHONES[0].href}
                     label="Call to book"
                     variant="outline"
                     size="sm"
-                    className="mt-6 w-full sm:w-auto"
+                    className="relative mt-6 w-full sm:w-fit"
                   />
                 </article>
               </Reveal>
             );
           })}
         </div>
-
-        <Reveal delayMs={120}>
-          <div className="mt-14 flex flex-col items-center justify-between gap-6 rounded-2xl bg-gradient-navy px-6 py-8 text-center text-white shadow-premium md:flex-row md:text-left md:px-10 md:py-9">
-            <div className="max-w-xl">
-              <p className="text-sm font-semibold text-brand-green-bright">Book by phone</p>
-              <p className="mt-2 text-lg font-medium text-white md:text-xl">
-                Not sure which service fits? Call us and we will help you choose.
-              </p>
-            </div>
-            <CallButton
-              href={PHONES[0].href}
-              label={`Call ${PHONES[0].display}`}
-              variant="secondary"
-              size="md"
-              className="shrink-0"
-            />
-          </div>
-        </Reveal>
       </div>
     </Section>
   );

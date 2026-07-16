@@ -6,12 +6,7 @@ export const COMPANY = {
 export const PHONES = [
   {
     id: "primary",
-    display: "587-703-2816",
-    href: "tel:+15877032816",
-  },
-  {
-    id: "secondary",
-    display: "587-582-4428",
-    href: "tel:+15875824428",
+    display: "825-749-2749",
+    href: "tel:+18257492749",
   },
 ] as const;

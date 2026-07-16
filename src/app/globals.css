@@ -26,58 +26,27 @@
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-brand-blue;
+    @apply outline outline-2 outline-offset-2 outline-brand-blue;
   }
 }
 
-
 @layer utilities {
+  /* Clean near-white canvas with a single faint brand wash at the top */
   .bg-page {
-    background-color: #f4f8f7;
-    background-image:
-      radial-gradient(ellipse 80% 50% at 8% 0%, rgba(52, 73, 158, 0.07), transparent 55%),
-      radial-gradient(ellipse 70% 48% at 92% 8%, rgba(101, 195, 166, 0.09), transparent 50%),
-      radial-gradient(ellipse 65% 45% at 50% 100%, rgba(20, 28, 54, 0.035), transparent 52%);
+    background-color: #fafcfb;
+    background-image: radial-gradient(
+      ellipse 90% 55% at 50% -10%,
+      rgba(52, 73, 158, 0.05),
+      transparent 60%
+    );
   }
 
-  .bg-dots {
-    background-image: radial-gradient(rgba(52, 73, 158, 0.08) 1.2px, transparent 1.2px);
-    background-size: 22px 22px;
-  }
-
-  .bg-dots-subtle {
-    background-image: radial-gradient(rgba(52, 73, 158, 0.05) 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-
-  .bg-grid-fine {
-    background-image:
-      linear-gradient(rgba(52, 73, 158, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(52, 73, 158, 0.05) 1px, transparent 1px);
-    background-size: 48px 48px;
-  }
-
+  /* Subtle line grid for dark navy surfaces only */
   .bg-grid-fine-light {
     background-image:
       linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
     background-size: 40px 40px;
-  }
-
-  .ring-gradient-card {
-    box-shadow:
-      0 0 0 1px rgba(52, 73, 158, 0.1),
-      0 4px 24px -6px rgba(52, 73, 158, 0.14),
-      0 16px 48px -16px rgba(101, 195, 166, 0.12);
-  }
-
-  .bg-dots-light {
-    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-    background-size: 28px 28px;
-  }
-
-  .heading-display {
-    @apply font-display font-extrabold tracking-tight text-slate-900;
   }
 
   /* Shared section label style */
@@ -86,10 +55,10 @@
   }
 
   .section-heading {
-    @apply font-display text-3xl font-bold tracking-tight text-slate-900 md:text-4xl;
+    @apply font-display text-3xl font-bold tracking-tight text-slate-900 md:text-4xl lg:text-[2.75rem] lg:leading-[1.12];
   }
 
   .section-heading-light {
-    @apply font-display text-3xl font-bold tracking-tight text-white md:text-4xl;
+    @apply font-display text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-[2.75rem] lg:leading-[1.12];
   }
 }

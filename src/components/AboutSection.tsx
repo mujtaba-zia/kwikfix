@@ -1,32 +1,22 @@
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
+import { Sparkle } from "./Sparkle";
 
 export function AboutSection() {
   return (
     <Section
       id="about"
-      className="relative overflow-hidden py-16 md:py-24"
+      className="bg-white py-16 md:py-24"
       aria-labelledby="about-heading"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-gradient-brand-soft opacity-[0.35]"
-        aria-hidden
-      />
-      <div className="pointer-events-none absolute inset-0 bg-dots-subtle opacity-[0.2]" aria-hidden />
-      <div
-        className="pointer-events-none absolute right-0 top-0 h-[min(100%,24rem)] w-[min(100%,28rem)] rounded-full bg-brand-blue/13 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute bottom-0 left-0 h-64 w-64 rounded-full bg-brand-green/11 blur-3xl"
-        aria-hidden
-      />
-
-      <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
           <Reveal>
             <div>
-              <p className="eyebrow text-brand-green-dark">About us</p>
+              <p className="flex items-center gap-2 eyebrow text-brand-green-dark">
+                <Sparkle className="h-3 w-3 text-brand-green" />
+                About us
+              </p>
               <h2 id="about-heading" className="section-heading mt-3">
                 Kwikfix Services
               </h2>
@@ -49,16 +39,22 @@ export function AboutSection() {
           </Reveal>
 
           <Reveal delayMs={70}>
-            <figure className="relative overflow-hidden rounded-2xl bg-gradient-navy p-8 text-white shadow-premium md:p-10">
-              <div className="absolute inset-0 bg-grid-fine-light opacity-[0.08]" aria-hidden />
-              <blockquote className="relative font-display text-xl font-semibold leading-snug md:text-2xl md:leading-snug">
+            <figure className="relative overflow-hidden rounded-3xl bg-brand-ice/60 p-8 md:p-12">
+              <Sparkle className="absolute right-8 top-8 h-5 w-5 text-brand-green" />
+              <span
+                className="pointer-events-none absolute -left-2 -top-7 font-display text-[8rem] font-extrabold leading-none text-brand-blue/10"
+                aria-hidden
+              >
+                &ldquo;
+              </span>
+              <blockquote className="relative pt-10 font-display text-2xl font-semibold leading-snug text-brand-navy md:text-3xl md:leading-snug">
                 A clean space should feel calm, welcoming, and ready for whatever comes next.
               </blockquote>
-              <figcaption className="relative mt-8 flex items-center gap-3 border-t border-white/15 pt-8">
-                <span className="h-10 w-1 rounded-full bg-brand-green-bright" aria-hidden />
+              <figcaption className="relative mt-8 flex items-center gap-3 border-t border-brand-navy/10 pt-7">
+                <span className="h-10 w-1 rounded-full bg-brand-green" aria-hidden />
                 <div>
-                  <p className="text-sm font-bold text-white">Kwikfix Services</p>
-                  <p className="text-xs text-slate-400">Calgary, Alberta</p>
+                  <p className="text-sm font-bold text-brand-navy">Kwikfix Services</p>
+                  <p className="text-xs text-slate-500">Calgary, Alberta</p>
                 </div>
               </figcaption>
             </figure>

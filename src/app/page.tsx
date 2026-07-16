@@ -1,6 +1,8 @@
 import { HeaderNav } from "@/components/HeaderNav";
 import { Hero } from "@/components/Hero";
+import { ServicesTicker } from "@/components/ServicesTicker";
 import { ServicesGrid } from "@/components/ServicesGrid";
+import { ProcessSection } from "@/components/ProcessSection";
 import { AboutSection } from "@/components/AboutSection";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
@@ -21,7 +23,9 @@ export default function HomePage() {
       <HeaderNav />
       <main id="main">
         <Hero />
+        <ServicesTicker />
         <ServicesGrid />
+        <ProcessSection />
         <AboutSection />
         <WhyChooseUs />
         <TestimonialsSection />

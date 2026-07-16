@@ -10,24 +10,26 @@ type CallButtonProps = {
 };
 
 const base =
-  "group inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none";
+  "group inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none";
 
 const variants: Record<NonNullable<CallButtonProps["variant"]>, string> = {
   primary:
-    "bg-gradient-to-br from-brand-blue via-brand-blue to-brand-blue-deep text-white shadow-btn-primary hover:shadow-lift hover:-translate-y-0.5 hover:brightness-[1.05] active:translate-y-0 active:brightness-100",
+    "bg-brand-blue text-white shadow-sm hover:bg-brand-blue-dark hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-brand-blue",
+  /* Green pill with navy text: strong contrast on both light and navy surfaces */
   secondary:
-    "bg-gradient-to-br from-brand-green via-brand-green to-brand-green-dark text-white shadow-btn-green hover:shadow-glow hover:-translate-y-0.5 hover:brightness-[1.04] active:translate-y-0",
+    "bg-brand-green text-brand-navy shadow-sm hover:bg-brand-green-bright hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-white",
   outline:
-    "border-2 border-brand-blue/90 bg-white/95 text-brand-blue shadow-sm hover:bg-brand-blue/8 hover:border-brand-blue hover:shadow-md hover:-translate-y-0.5 active:translate-y-0",
+    "border border-slate-300 bg-white text-brand-navy shadow-sm hover:border-brand-blue hover:text-brand-blue hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-brand-blue",
   outlineInverse:
-    "border-2 border-white/90 text-white bg-white/5 backdrop-blur-sm hover:bg-white/15 hover:-translate-y-0.5 active:translate-y-0",
-  ghost: "text-brand-blue hover:bg-brand-blue/10 active:scale-[0.98]",
+    "border border-white/30 bg-transparent text-white hover:border-white/70 hover:bg-white/10 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-white",
+  ghost:
+    "text-brand-blue hover:bg-brand-blue/10 active:scale-[0.98] focus-visible:outline-brand-blue",
 };
 
 const sizes: Record<NonNullable<CallButtonProps["size"]>, string> = {
-  sm: "px-4 py-2.5 text-sm",
-  md: "px-5 py-3 text-[0.9375rem]",
-  lg: "px-8 py-4 text-lg min-h-[3.35rem]",
+  sm: "px-4 py-2 text-sm",
+  md: "px-6 py-3 text-[0.9375rem]",
+  lg: "px-8 py-4 text-base md:text-lg",
 };
 
 export function CallButton({

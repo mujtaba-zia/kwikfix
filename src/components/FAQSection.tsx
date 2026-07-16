@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react";
 import { Section } from "./Section";
+import { Sparkle } from "./Sparkle";
 
 type FaqItem = { q: string; a: string };
 
@@ -20,7 +21,7 @@ const faqs: FaqItem[] = [
   },
   {
     q: "How do I book a cleaning service?",
-    a: "Booking is by phone only. Call either of our numbers on this page, tell us about your property and the service you need, and we will work with you to schedule a visit.",
+    a: "Booking is by phone only. Call us at the number on this page, tell us about your property and the service you need, and we will work with you to schedule a visit.",
   },
   {
     q: "Do I need to call to schedule?",
@@ -28,18 +29,21 @@ const faqs: FaqItem[] = [
   },
 ];
 
-function Chevron({ open }: { open: boolean }) {
+function PlusMinus({ open }: { open: boolean }) {
   return (
-    <svg
-      className={`h-5 w-5 shrink-0 text-brand-green-dark transition-transform duration-200 motion-safe:group-hover/faq:scale-110 motion-safe:group-hover/faq:text-brand-blue ${open ? "rotate-180" : ""}`}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
+    <span
+      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-200 ${
+        open
+          ? "border-brand-green/60 bg-brand-green/10 text-brand-green-dark"
+          : "border-slate-200 text-slate-500 group-hover/faq:border-brand-blue/40 group-hover/faq:text-brand-blue"
+      }`}
       aria-hidden
     >
-      <path d="M6 9l6 6 6-6" />
-    </svg>
+      <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M5 12h14" />
+        {!open && <path d="M12 5v14" />}
+      </svg>
+    </span>
   );
 }
 
@@ -50,25 +54,15 @@ export function FAQSection() {
   return (
     <Section
       id="faq"
-      className="relative overflow-hidden py-16 md:py-24"
+      className="bg-brand-mist/40 py-16 md:py-24"
       aria-labelledby="faq-heading"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-gradient-brand-soft opacity-[0.28]"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -right-16 top-1/3 h-64 w-64 rounded-full bg-brand-navy/10 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute left-0 bottom-0 h-52 w-52 rounded-full bg-brand-blue/10 blur-3xl"
-        aria-hidden
-      />
-
-      <div className="relative z-10 mx-auto max-w-3xl px-4 md:px-6 lg:px-8">
+      <div className="mx-auto max-w-3xl px-4 md:px-6 lg:px-8">
         <div className="text-center">
-          <p className="eyebrow text-brand-green-dark">FAQ</p>
+          <p className="flex items-center justify-center gap-2 eyebrow text-brand-green-dark">
+            <Sparkle className="h-3 w-3 text-brand-green" />
+            FAQ
+          </p>
           <h2 id="faq-heading" className="section-heading mt-3">
             Common questions
           </h2>
@@ -77,51 +71,46 @@ export function FAQSection() {
           </p>
         </div>
 
-        <div className="mt-10 space-y-2 md:mt-12">
-          {faqs.map((item, index) => {
-            const panelId = `${baseId}-panel-${index}`;
-            const buttonId = `${baseId}-button-${index}`;
-            const isOpen = openIndex === index;
+        <div className="mt-10 rounded-3xl border border-slate-200 bg-white p-2 shadow-soft md:mt-12 md:p-3">
+          <div className="divide-y divide-slate-100">
+            {faqs.map((item, index) => {
+              const panelId = `${baseId}-panel-${index}`;
+              const buttonId = `${baseId}-button-${index}`;
+              const isOpen = openIndex === index;
 
-            return (
-              <div
-                key={item.q}
-                className={`overflow-hidden rounded-xl border transition-colors duration-200 ${
-                  isOpen
-                    ? "border-brand-blue/45 bg-brand-mist/50 shadow-sm"
-                    : "border-slate-200/90 bg-white hover:border-brand-blue/30 hover:bg-slate-50/80"
-                }`}
-              >
-                <h3>
-                  <button
-                    id={buttonId}
-                    type="button"
-                    className="group/faq flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-display text-[0.9375rem] font-bold leading-snug text-slate-900 transition-colors duration-200 hover:text-brand-blue-dark md:px-6 md:py-[1.125rem] md:text-base"
-                    aria-expanded={isOpen}
-                    aria-controls={panelId}
-                    onClick={() => setOpenIndex(isOpen ? null : index)}
+              return (
+                <div key={item.q}>
+                  <h3>
+                    <button
+                      id={buttonId}
+                      type="button"
+                      className="group/faq flex w-full items-center justify-between gap-4 rounded-2xl px-4 py-4 text-left font-display text-base font-semibold leading-snug text-slate-900 transition-colors duration-200 hover:text-brand-blue md:px-5 md:py-5 md:text-lg"
+                      aria-expanded={isOpen}
+                      aria-controls={panelId}
+                      onClick={() => setOpenIndex(isOpen ? null : index)}
+                    >
+                      {item.q}
+                      <PlusMinus open={isOpen} />
+                    </button>
+                  </h3>
+                  <div
+                    id={panelId}
+                    role="region"
+                    aria-labelledby={buttonId}
+                    className={`grid transition-[grid-template-rows] duration-200 ease-out ${
+                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    }`}
                   >
-                    {item.q}
-                    <Chevron open={isOpen} />
-                  </button>
-                </h3>
-                <div
-                  id={panelId}
-                  role="region"
-                  aria-labelledby={buttonId}
-                  className={`grid transition-[grid-template-rows] duration-200 ease-out ${
-                    isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                  }`}
-                >
-                  <div className="min-h-0 overflow-hidden">
-                    <p className="border-t border-slate-100 px-5 pb-4 pt-3 text-sm leading-relaxed text-slate-600 md:px-6 md:pb-5 md:text-[0.9375rem]">
-                      {item.a}
-                    </p>
+                    <div className="min-h-0 overflow-hidden">
+                      <p className="max-w-prose px-4 pb-5 pr-14 text-[0.9375rem] leading-relaxed text-slate-600 md:px-5 md:pb-6">
+                        {item.a}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </Section>

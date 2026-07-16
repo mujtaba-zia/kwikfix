@@ -16,11 +16,7 @@ export function Section({
   "aria-labelledby": labelledBy,
 }: SectionProps) {
   return (
-    <Tag
-      id={id}
-      aria-labelledby={labelledBy}
-      className={`scroll-mt-20 md:scroll-mt-[5.5rem] ${className}`}
-    >
+    <Tag id={id} aria-labelledby={labelledBy} className={`scroll-mt-24 ${className}`}>
       {children}
     </Tag>
   );

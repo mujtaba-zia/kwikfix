@@ -1,5 +1,6 @@
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
+import { Sparkle } from "./Sparkle";
 
 const points = [
   {
@@ -59,55 +60,50 @@ export function WhyChooseUs() {
   return (
     <Section
       id="why-us"
-      className="relative overflow-hidden py-16 md:py-24"
+      className="bg-brand-mist/40 py-16 md:py-24"
       aria-labelledby="why-heading"
     >
-      <div className="pointer-events-none absolute inset-0 bg-grid-fine opacity-[0.1]" aria-hidden />
-      <div
-        className="pointer-events-none absolute right-0 top-1/4 h-72 w-72 rounded-full bg-brand-blue/10 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -left-12 bottom-0 h-56 w-56 rounded-full bg-brand-green/10 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute left-1/2 bottom-0 h-32 w-[min(90%,36rem)] -translate-x-1/2 rounded-full bg-brand-navy/10 blur-3xl"
-        aria-hidden
-      />
-      <div className="relative z-10 mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
-        <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="eyebrow text-brand-blue-dark">Why Kwikfix</p>
-            <h2 id="why-heading" className="section-heading mt-3">
-              Built for quality and clarity
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-700 md:text-lg">
-              Calgary clients choose us when they want work that feels intentional, not rushed, with
-              simple phone-based booking and direct answers from our team.
-            </p>
-          </div>
-        </Reveal>
+      <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+          <Reveal>
+            <div className="lg:sticky lg:top-28">
+              <p className="flex items-center gap-2 eyebrow text-brand-blue">
+                <Sparkle className="h-3 w-3 text-brand-green" />
+                Why Kwikfix
+              </p>
+              <h2 id="why-heading" className="section-heading mt-3 max-w-[14ch]">
+                Built for quality and clarity
+              </h2>
+              <p className="mt-4 max-w-md text-base leading-relaxed text-slate-600 md:text-lg">
+                Calgary clients choose us when they want work that feels intentional, not rushed,
+                with simple phone-based booking and direct answers from our team.
+              </p>
+            </div>
+          </Reveal>
 
-        <ul className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
-          {points.map((p, i) => (
-            <Reveal key={p.title} delayMs={40 + i * 35}>
-              <li
-                className={`group/point flex h-full flex-col rounded-xl border border-slate-200/90 bg-white/90 p-6 shadow-sm backdrop-blur-sm transition hover:border-brand-blue/35 hover:shadow-card md:p-7 ${
-                  i === points.length - 1 ? "lg:col-start-2" : ""
-                }`}
-              >
-                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-brand-blue/15 via-brand-ice/80 to-brand-green/18 text-brand-blue transition-all duration-300 motion-safe:group-hover/point:scale-110 motion-safe:group-hover/point:-rotate-3 motion-safe:group-hover/point:shadow-md motion-safe:group-hover/point:ring-2 motion-safe:group-hover/point:ring-brand-blue/20">
-                  <span className="inline-flex motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover/point:scale-110 motion-safe:group-hover/point:-rotate-12">
-                    {p.icon}
-                  </span>
-                </span>
-                <h3 className="mt-4 font-display text-base font-bold text-slate-900 md:text-lg">{p.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600 md:text-[0.9375rem]">{p.body}</p>
+          <ul className="grid gap-x-10 sm:grid-cols-2">
+            {points.map((p, i) => (
+              <li key={p.title} className={i === 4 ? "sm:col-span-2 sm:max-w-[calc(50%-1.25rem)]" : ""}>
+                <Reveal delayMs={40 + i * 40}>
+                  <div className="group/point border-t border-slate-300/70 py-6 md:py-7">
+                    <span
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-green/15 text-brand-green-dark transition-transform duration-300 motion-safe:group-hover/point:scale-110"
+                      aria-hidden
+                    >
+                      {p.icon}
+                    </span>
+                    <h3 className="mt-4 font-display text-base font-bold text-slate-900 md:text-lg">
+                      {p.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-600 md:text-[0.9375rem]">
+                      {p.body}
+                    </p>
+                  </div>
+                </Reveal>
               </li>
-            </Reveal>
-          ))}
-        </ul>
+            ))}
+          </ul>
+        </div>
       </div>
     </Section>
   );

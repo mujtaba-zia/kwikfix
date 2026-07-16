@@ -6,7 +6,7 @@ export function FloatingCallButton() {
   return (
     <a
       href={PHONES[0].href}
-      className="group fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-green to-brand-green-dark px-5 py-3.5 text-sm font-bold text-white shadow-btn-green ring-2 ring-white/50 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow active:translate-y-0 md:hidden max-[767px]:mb-[env(safe-area-inset-bottom,0px)] max-[767px]:mr-[env(safe-area-inset-right,0px)]"
+      className="group fixed bottom-5 right-5 z-40 flex items-center gap-2 rounded-full bg-brand-green px-5 py-3.5 text-sm font-bold text-brand-navy shadow-lift ring-1 ring-brand-navy/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-green-bright active:translate-y-0 md:hidden max-[767px]:mb-[env(safe-area-inset-bottom,0px)] max-[767px]:mr-[env(safe-area-inset-right,0px)]"
       aria-label={`Call now at ${PHONES[0].display}`}
     >
       <svg
